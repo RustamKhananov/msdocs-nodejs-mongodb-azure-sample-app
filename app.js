@@ -9,6 +9,7 @@ const { format } = require("date-fns");
 // 1st party dependencies
 var configData = require("./config/connection");
 var indexRouter = require("./routes/index");
+var usersRouter = require("./routes/users");
 
 async function getApp() {
 
@@ -33,6 +34,7 @@ async function getApp() {
 
   app.locals.format = format;
 
+  app.use("/users", usersRouter);
   app.use("/", indexRouter);
   app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js")); // redirect bootstrap JS
   app.use(
